@@ -1,0 +1,19 @@
+#! /bin/bash
+#Sjekker om det er mulige oppdateringer, kjøres i cron.
+#displayer i den *kule* Ubuntu pop-up-tingen.
+
+eval "export $(egrep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep -u $LOGNAME gnome-session)/environ)";
+l1=$(/usr/lib/update-notifier/apt-check --human-readable | head -1)
+l2=$(/usr/lib/update-notifier/apt-check --human-readable | tail -1)
+n1=`echo "$l1" | cut -d' ' -f1`
+n2=`echo "$l2" | cut -d' ' -f1`
+i=$(echo "$n1 + $n2" | bc)
+
+if (( i != 0 )); then
+ DISPLAY=:0 /usr/bin/notify-send -i system-run \
+ "Nye oppdateringer" \
+ "$l1
+ $l2
+ "
+
+fi
