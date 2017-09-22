@@ -1,0 +1,26 @@
+#! /bin/bash
+#updates system
+
+if [ $(whoami) != "root" ]; then
+	echo "Sudo fam."
+	exit 0
+fi
+
+apt update
+clear
+echo "getting update information"
+/usr/lib/update-notifier/apt-check --human-readable
+apt list --upgradeable
+read -p "Enter to continue"
+apt full-upgrade -y
+apt auto-remove -y
+
+
+if [ -f /var/run/reboot-required ]; then
+	clear
+	for i in $(seq 0 9); do
+		echo -ne "Reboot required. Rebooting in $(echo "9-$i" | bc)\r"
+		sleep 1
+	done
+	reboot
+fi
