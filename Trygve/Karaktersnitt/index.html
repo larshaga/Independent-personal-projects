@@ -1,4 +1,7 @@
-<!-- Web app som regner ut karaktersnitt for NTNU -->
+<!--
+Web app som regner ut karaktersnitt for NTNU.
+Laget av Trygve Vang
+ -->
 <!doctype html>
 <head>
 	<meta charset="UTF-8">
@@ -8,17 +11,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<!--
-		Hent emnenavn fra python funksjon med fil som parameter
-		Inni et form isplay de som label med input bokser type="number", knapp ved siden av for å slette emne
-		POST form til python funksjon som regner ut snitt og returnerer det
-		Display snitt
-
-		Knapp for å legge til form
-	-->
 	<div id="kalkuler" class="col-md-12 panel panel-default">
 		<h1 class="page-header">Kalkuler snittkarakter for å se om du kvalifiserer deg til NTNU</h1>
-		<div class="hidden" id="emnesnittkalkulator"> <!--div er hidden så lenge det ikke er noen emner. Når første emne legges til fjernes class hidden -->
+		<div class="hidden" id="emnesnittkalkulator">
 			<h4>Regn ut snittkarakter manuelt basert på disse emneresultatene:</h4>
 			<table id="alleEmner">
 				<tbody id="regner"></tbody>
